@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="892cdcb0-90cc-4ed5-b833-b98c57f21334" ChangeDateTime="07/16/2023 09:50:13">
+    <Property Name="ElementName" Value="[dbo].[Tasks].[Descriptiojn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Tasks]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Description" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5735f459-7987-4948-98c4-b27ec92d5462" ChangeDateTime="07/16/2023 10:02:18">
+    <Property Name="ElementName" Value="[dbo].[Tasks].[TaskPriority]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Tasks]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TaskPriorityId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="02b36054-6b5d-4370-84f4-b2a7cb7e16f6" ChangeDateTime="07/16/2023 10:02:22">
+    <Property Name="ElementName" Value="[dbo].[Tasks].[TaskStatus]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Tasks]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TaskStatusId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ac7d617b-0f64-4789-9041-f65775714c40" ChangeDateTime="07/17/2023 15:16:16">
+    <Property Name="ElementName" Value="[dbo].[Permissions].[Descriptionb]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Permissions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Description" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="53447773-477b-4d72-b3db-1fbccb5200ef" ChangeDateTime="07/17/2023 15:16:44">
+    <Property Name="ElementName" Value="[dbo].[Permissions].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Permissions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Resource" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="52c36070-6787-4724-b09f-8695a413c0d7" ChangeDateTime="07/17/2023 15:17:00">
+    <Property Name="ElementName" Value="[dbo].[Permissions].[Description]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Permissions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Create" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a3d45c92-3bf9-45a7-84d1-67ad72726f47" ChangeDateTime="07/17/2023 15:17:08">
+    <Property Name="ElementName" Value="[dbo].[Permissions].[Create]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Permissions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Read" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ddf6d7ad-95d5-4390-818e-73925cc23767" ChangeDateTime="07/17/2023 15:17:16">
+    <Property Name="ElementName" Value="[dbo].[Permissions].[Read]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Permissions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Create" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8c745963-b9ec-4b92-a971-a1f75f342709" ChangeDateTime="07/17/2023 15:17:48">
+    <Property Name="ElementName" Value="[dbo].[Permissions].[Delte]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Permissions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Delete" />
+  </Operation>
+</Operations>
