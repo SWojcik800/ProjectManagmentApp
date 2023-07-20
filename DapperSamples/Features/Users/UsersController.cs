@@ -2,6 +2,7 @@
 using DapperSamples.Common.Pagination;
 using DapperSamples.Database;
 using DapperSamples.Features.Users.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
@@ -11,6 +12,7 @@ namespace DapperSamples.Features.Users
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class UsersController : ControllerBase
     {
         private readonly IDbConnectionFactory _connectionFactory;
@@ -57,6 +59,20 @@ namespace DapperSamples.Features.Users
             var totalCount = await result.ReadSingleAsync<int>();
 
             return new PagedResult<UserDto>(totalCount, userDtos);
+        }
+
+        [HttpPost]
+        public async Task<long> Create(CreateUserDto createUserDto)
+        {
+            var connection = _connectionFactory.Create();
+
+            var createdUserId = await connection.QuerySingleAsync<long>("sp_createUser", new
+            {
+                userName = createUserDto.UserName,
+                password = createUserDto.Password
+            }, commandType: System.Data.CommandType.StoredProcedure);
+
+            return createdUserId;
         }
     }
 }
