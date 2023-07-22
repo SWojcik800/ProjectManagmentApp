@@ -6,6 +6,7 @@ using DapperSamples.Database;
 using DapperSamples.Features.Account.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProjectManagmentAPI.Authorization.Providers;
 
 namespace DapperSamples.Features.Account
 {
@@ -16,17 +17,19 @@ namespace DapperSamples.Features.Account
         private readonly IAuthorizationService _authorizationService;
         private readonly ITokenGenerator _tokenGenerator;
         private readonly IDbConnectionFactory _connectionFactory;
-
+        private readonly ITokenDataProvider _tokenDataProvider;
 
         public AccountController(
             IAuthorizationService authorizationService,
             ITokenGenerator tokenGenerator,
-            IDbConnectionFactory connectionFactory
+            IDbConnectionFactory connectionFactory,
+            ITokenDataProvider tokenDataProvider
             )
         {
             _authorizationService = authorizationService;
             _tokenGenerator = tokenGenerator;
             _connectionFactory = connectionFactory;
+            _tokenDataProvider = tokenDataProvider;
         }
 
         [HttpPost("SignIn")]
@@ -36,29 +39,7 @@ namespace DapperSamples.Features.Account
 
             if(result.Succeeded)
             {
-                var connection = _connectionFactory.Create();
-
-                var tokenDataResult = await connection.QueryAsync<UserTokenData, Role, UserTokenData>(
-                    @"
-                    SELECT u.Id, u.UserName, r.Id AS RoleId, r.Name AS RoleName FROM Users u
-                        LEFT JOIN UserRoles ur ON u.Id = ur.UserId
-                        LEFT JOIN Roles r ON ur.RoleId = r.Id
-                        WHERE u.UserName = @userName
-                    ",                    
-                    (tokenData, role) =>
-                    {
-                        if(role is not null)
-                            tokenData.Roles.Add(role);
-                        return tokenData;
-                    },
-                    splitOn: "RoleId",
-                    param: new
-                        {
-                            userName = authorizeDto.UserName
-                        }
-                    );
-
-                var tokenData = tokenDataResult.First();
+                UserTokenData tokenData = await _tokenDataProvider.GetTokenData(authorizeDto);
                 var roles = tokenData.Roles.Select(x => x.RoleName.ToString())
                     .ToList();
 
@@ -69,9 +50,10 @@ namespace DapperSamples.Features.Account
                     TokenData = tokenData
                 });
             }
-                
+
 
             return Unauthorized();
         }
+
     }
 }

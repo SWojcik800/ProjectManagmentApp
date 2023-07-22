@@ -1,10 +1,17 @@
 using DapperSamples.Authorization;
 using DapperSamples.Authorization.Jwt;
 using DapperSamples.Database;
+using ProjectManagmentAPI.Authorization.Providers;
+using ProjectManagmentAPI.Features.Statuses.Repositories;
+using ProjectManagmentAPI.Features.Users.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 IConfiguration configuration = builder.Configuration;
 // Add services to the container.
+builder.Services.AddScoped<ITokenDataProvider, TokenDataProvider>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IStatusesRepository, StatusesRepository>();
+
 builder.Services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
 builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
 

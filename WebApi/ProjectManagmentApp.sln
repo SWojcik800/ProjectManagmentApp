@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperSamples", "DapperSamples.csproj", "{9903DA4A-776B-4B6D-8F4B-353747F7FEC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagmentAPI", "ProjectManagmentAPI.csproj", "{9903DA4A-776B-4B6D-8F4B-353747F7FEC9}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ProjectManagmentDb", "..\DapperSamplesDb\ProjectManagmentDb.sqlproj", "{220B9761-B3AA-40B1-8DC4-C9074705F84B}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ProjectManagmentDb", "..\DatabaseSchema\ProjectManagmentDb.sqlproj", "{220B9761-B3AA-40B1-8DC4-C9074705F84B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

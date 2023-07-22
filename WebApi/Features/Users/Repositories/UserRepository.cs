@@ -2,28 +2,18 @@
 using DapperSamples.Common.Pagination;
 using DapperSamples.Database;
 using DapperSamples.Features.Users.Dtos;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
-using System.Text;
 
-namespace DapperSamples.Features.Users
+namespace ProjectManagmentAPI.Features.Users.Repositories
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize(Roles = "Admin")]
-    public class UsersController : ControllerBase
+    public sealed class UserRepository : IUserRepository
     {
         private readonly IDbConnectionFactory _connectionFactory;
 
-        public UsersController(IDbConnectionFactory connectionFactory)
+        public UserRepository(IDbConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
-
-        [HttpGet]
-        public async Task<PagedResult<UserDto>> GetAll(string? userName, int offset = 0, int limit = 10, string? order = "id;desc")
+        public async Task<PagedResult<UserDto>> GetPagedUsers(string? userName, int offset, int limit, string? order)
         {
             var connection = _connectionFactory.Create();
 
@@ -32,7 +22,7 @@ namespace DapperSamples.Features.Users
                 {"username", userName },
                 { "offset", offset},
                 { "limit", limit },
-                { "sort", order }
+                { "order", order }
             };
 
             var sql = @"
@@ -42,10 +32,10 @@ namespace DapperSamples.Features.Users
                     FROM [ProjectManagmentDb].[dbo].[Users]
                     WHERE (@username is null OR [UserName] like @username + '%')
                     ORDER BY
-                        case when @sort = 'id;desc' then Id end desc,
-	                    case when @sort = 'id;asc' then Id end asc,
-	                    case when @sort = 'username;asc' then UserName end asc,
-	                    case when @sort = 'username;desc' then UserName end desc
+                        case when @order = 'id;desc' then Id end desc,
+	                    case when @order = 'id;asc' then Id end asc,
+	                    case when @order = 'username;asc' then UserName end asc,
+	                    case when @order = 'username;desc' then UserName end desc
                     OFFSET @offset ROWS
                     FETCH NEXT @limit ROWS ONLY;
 
@@ -61,8 +51,7 @@ namespace DapperSamples.Features.Users
             return new PagedResult<UserDto>(totalCount, userDtos);
         }
 
-        [HttpPost]
-        public async Task<long> Create(CreateUserDto createUserDto)
+        public async Task<long> CreateUser(CreateUserDto createUserDto)
         {
             var connection = _connectionFactory.Create();
 

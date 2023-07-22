@@ -74,7 +74,4 @@
     <Build Include="Procedures\sp_createUser.sql" />
     <Build Include="Functions\fn_authorize.sql" />
   </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="DapperSamplesDb.refactorlog" />
-  </ItemGroup>
 </Project>
