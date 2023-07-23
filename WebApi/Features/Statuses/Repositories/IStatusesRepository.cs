@@ -7,7 +7,7 @@ namespace ProjectManagmentAPI.Features.Statuses.Repositories
     {
         Task<long> Create(CreateStatusDto createStatusDto);
         Task<StatusDto?> Get(long id);
-        Task<PagedResult<StatusDto>> GetPagedStatuses(string? keyword, int offset = 0, int limit = 10, string? order = "id;desc");
+        Task<PagedResult<StatusDto>> GetAllPaged(string? keyword, int offset = 0, int limit = 10, string? order = "id;desc");
         Task Update(UpdateStatusDto updateStatusDto);
     }
 }

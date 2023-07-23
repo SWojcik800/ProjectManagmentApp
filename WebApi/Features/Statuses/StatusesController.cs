@@ -17,9 +17,10 @@ namespace ProjectManagmentAPI.Features.Statuses
         {
             _statusesRepository = statusesRepository;
         }
+
         [HttpGet]
         public async Task<IActionResult> GetAll(string? keyword, int offset = 0, int limit = 10, string? order = "id;desc")
-            => Ok(await _statusesRepository.GetPagedStatuses(keyword, offset, limit, order));
+            => Ok(await _statusesRepository.GetAllPaged(keyword, offset, limit, order));
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(long id)

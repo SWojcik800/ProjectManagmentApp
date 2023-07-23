@@ -15,13 +15,13 @@ namespace ProjectManagmentAPI.Features.Statuses.Repositories
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<PagedResult<StatusDto>> GetPagedStatuses(string? keyword, int offset = 0, int limit = 10, string? order = "id;desc")
+        public async Task<PagedResult<StatusDto>> GetAllPaged(string? keyword, int offset = 0, int limit = 10, string? order = "id;desc")
         {
             var connection = _connectionFactory.Create();
 
             var sql = @"
                 SELECT 
-                    [Id]
+                    [Id],
                     [Name],
                     [Description]
               FROM [ProjectManagmentDb].[dbo].[TaskStatuses]
@@ -65,7 +65,7 @@ namespace ProjectManagmentAPI.Features.Statuses.Repositories
 
             var sql = @"
             SELECT TOP 1
-                [Id]
+                [Id],
                 [Name],
                 [Description]
             FROM [ProjectManagmentDb].[dbo].[TaskStatuses]
