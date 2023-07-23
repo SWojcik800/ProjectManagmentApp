@@ -2,6 +2,7 @@ using DapperSamples.Authorization;
 using DapperSamples.Authorization.Jwt;
 using DapperSamples.Database;
 using ProjectManagmentAPI.Authorization.Providers;
+using ProjectManagmentAPI.Features.Priorities.Repositories;
 using ProjectManagmentAPI.Features.Statuses.Repositories;
 using ProjectManagmentAPI.Features.Users.Repositories;
 
@@ -11,6 +12,7 @@ IConfiguration configuration = builder.Configuration;
 builder.Services.AddScoped<ITokenDataProvider, TokenDataProvider>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IStatusesRepository, StatusesRepository>();
+builder.Services.AddScoped<IPrioritiesRepository, PrioritiesRepository>();
 
 builder.Services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
 builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
