@@ -32,7 +32,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "ProjectManagmentApi",
         Version = "v1",
-        Description = "Description of your API",
+        Description = "Project managment API",
     });
 
     var securityScheme = new OpenApiSecurityScheme
@@ -54,7 +54,7 @@ builder.Services.AddSwaggerGen(c =>
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
+                        Id = "Bearer",
                     }
                 },
                 new string[] {}
