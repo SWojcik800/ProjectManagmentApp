@@ -1,6 +1,7 @@
 using DapperSamples.Authorization;
 using DapperSamples.Authorization.Jwt;
 using DapperSamples.Database;
+using Microsoft.OpenApi.Models;
 using ProjectManagmentAPI.Authorization.Providers;
 using ProjectManagmentAPI.Database.Repository;
 using ProjectManagmentAPI.Features.Priorities.Repositories;
@@ -25,7 +26,41 @@ builder.Services.UseJwtToken(configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "ProjectManagmentApi",
+        Version = "v1",
+        Description = "Description of your API",
+    });
+
+    var securityScheme = new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Description = "JWT Bearer Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT"
+    };
+
+    c.AddSecurityDefinition("Bearer", securityScheme);
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[] {}
+            }
+        });
+});
 
 var app = builder.Build();
 
