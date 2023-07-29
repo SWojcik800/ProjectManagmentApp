@@ -1,9 +1,6 @@
-﻿using Dapper;
-using DapperSamples.Common.Pagination;
-using DapperSamples.Database;
+﻿using DapperSamples.Common.Pagination;
 using ProjectManagmentAPI.Database.Repository;
 using ProjectManagmentAPI.Features.Priorities.Dtos;
-using System.Text;
 
 namespace ProjectManagmentAPI.Features.Priorities.Repositories
 {

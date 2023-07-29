@@ -4,6 +4,7 @@ using DapperSamples.Database;
 using ProjectManagmentAPI.Authorization.Providers;
 using ProjectManagmentAPI.Database.Repository;
 using ProjectManagmentAPI.Features.Priorities.Repositories;
+using ProjectManagmentAPI.Features.Projects.Repositories;
 using ProjectManagmentAPI.Features.Statuses.Repositories;
 using ProjectManagmentAPI.Features.Users.Repositories;
 
@@ -14,6 +15,7 @@ builder.Services.AddScoped<ITokenDataProvider, TokenDataProvider>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IStatusesRepository, StatusesRepository>();
 builder.Services.AddScoped<IPrioritiesRepository, PrioritiesRepository>();
+builder.Services.AddScoped<IProjectsRepository, ProjectsRepository>();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
